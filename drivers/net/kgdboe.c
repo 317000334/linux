@@ -121,7 +121,7 @@ static int eth_get_char(void)
 	int chr;
 
 	while (atomic_read(&in_count) == 0)
-		netpoll_poll(&np);
+		__netpoll_setup(&np);		
 
 	chr = in_buf[in_tail++];
 	in_tail &= (IN_BUF_SIZE - 1);
